@@ -6,11 +6,18 @@ const app = express();
 
 app.set('json spaces', 2);
 
-app.get('/yahoo', (req, res) => {
-  getQuotes('AAPL').then(results => {
+app.get('/:symbol/:startDate/:endDate?', (req, res) => {
+  const symbol = req.params.symbol || 'AAPL';
+  const start = req.params.startDate || '2012-01-01';
+  const end = req.params.endDate || start;
+
+  getQuotes(symbol, start, end).then(results => {
     res.json(results);
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err);
+    res.send(err.toString());
+  });
 });
 
 const server = app.listen(process.env.PORT || 8000, () => {

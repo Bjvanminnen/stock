@@ -2,14 +2,14 @@
 
 import YF from 'yahoo-finance';
 
-export const getQuotes = (symbol) => {
+export const getQuotes = (symbol, start, end) => {
   return new Promise((resolve, reject) => {
+    console.log(`requesting ${symbol} ${start}, ${end}`);
     YF.historical({
       symbol,
-      from: '2012-01-01',
-      to: '2012-01-05'
+      from: start, 
+      to: end 
     }, (err, results) => {
-      console.log('done');
       if (err) {
         reject(err);
         return;
