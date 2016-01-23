@@ -12,6 +12,7 @@
     "webpack-success-plugin": "git://github.com/Bjvanminnen/webpack-success-plugin"
   },
   "scripts": {
+    "server": "node server/babel.main.js",
     "watch": "webpack --watch"
   },
   "author": "",
