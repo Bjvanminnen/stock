@@ -1,34 +1,20 @@
-"use strict"
+import { getQuotes } from './yahoo';
 
-// var x = 0;
-// var obj = {
-//   [x]: 'hello'
-// };
+import express from 'express';
 
-// console.log(obj);
+const app = express();
 
-// const x = 1;
-// console.log(x);
+app.set('json spaces', 2);
 
-// x++;
+app.get('/yahoo', (req, res) => {
+  getQuotes('AAPL').then(results => {
+    res.json(results);
+  })
+  .catch((err) => console.log(err));
+});
+
+const server = app.listen(process.env.PORT || 8000, () => {
+  console.log('App listening on ' + server.address().port);
+});
 
 
-// let foo = x => x * x;
-
-// console.log(foo(2));
-
-// function foo () {
-//   const x = 1;
-//   x++;
-//   return x;
-// }
-
-// console.log(foo());
-// console.log(foo());
-
-var bar = 'a';
-var foo = {
-  bar
-};
-
-console.log(foo);

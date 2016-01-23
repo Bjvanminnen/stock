@@ -30,4 +30,5 @@ var config = module.exports = {
   },
   plugins: [new SuccessPlugin('node build/main.js')],
   devtool: "#inline-source-map",
+  target: 'node'
 }
