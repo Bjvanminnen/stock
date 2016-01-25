@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InputRow from './InputRow';
+import YahooResponseView from './YahooResponseView';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ export default class App extends React.Component {
     fetch(`http://localhost:8000/${symbol}/${start}/${end}`)
       .then(response => {
         response.json().then(json => {
-          console.log(json);
           this.setState({lastResult: json});
         });
       })
@@ -26,7 +26,7 @@ export default class App extends React.Component {
     return (
       <div>
         <InputRow onChange={this.handleChange.bind(this)}/>
-        <pre>{JSON.stringify(this.state.lastResult, null, 2)}</pre>
+        <YahooResponseView response={this.state.lastResult}/>
       </div>
     );
   }
