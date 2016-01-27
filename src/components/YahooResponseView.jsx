@@ -9,17 +9,7 @@ const styles = {
   }
 };
 
-export default class YahooResponseView extends React.Component {
-  generateRows(data) {
-    const startVal = data[0].close;
-    const multiplier = 10000 / startVal;
-
-    return data.map(entry => [
-      new Date(entry.date),
-      (entry.close * multiplier)
-    ]);
-  }
-
+export default class YahooResponseView extends React.Component {  
   render() {
     const { quote, dividends } = this.props;
 
