@@ -1,6 +1,9 @@
-import { getQuotes } from './yahoo';
+import { getQuotes, getDividends } from './yahoo';
+import { wrap } from './wrapHttp';
 
 import express from 'express';
+
+wrap();
 
 const app = express();
 
@@ -11,12 +14,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/:symbol/:startDate/:endDate?', (req, res) => {
-  const symbol = req.params.symbol || 'AAPL';
-  const start = req.params.startDate || '2012-01-01';
-  const end = req.params.endDate || start;
+app.get('/', (req, res) => {
+  const symbol = req.query.symbol || 'AAPL';
+  const start = req.query.startDate || '2012-01-01';
+  const end = req.query.endDate || start;
+  const isDividend = req.query.dividend && req.query.dividend !== 'false';
 
-  getQuotes(symbol, start, end).then(results => {
+  const getData = isDividend ? getDividends : getQuotes;
+
+  getData(symbol, start, end).then(results => {
     res.json(results);
   })
   .catch((err) => {

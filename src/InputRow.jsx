@@ -17,9 +17,9 @@ export default class InputRow extends React.Component {
   render() {
     return (
       <div>
-        Symbol: <input ref="symbol"/>
-        Start: <input type="date" defaultValue="2016-01-01" ref="start"/>
-        End: <input type="date" defaultValue="2016-01-05" ref="end"/>
+        Symbol: <input ref="symbol" defaultValue="SPY"/>
+        Start: <input type="date" defaultValue="2015-01-01" ref="start"/>
+        End: <input type="date" defaultValue="2015-12-31" ref="end"/>
         <button onClick={this.handleChange.bind(this)}>Change</button>
       </div>
     );

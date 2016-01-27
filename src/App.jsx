@@ -7,16 +7,25 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lastResult: ""
+      lastQuoteResponse: "",
+      lastDividendResponse: ""
     };
   }
 
   handleChange(symbol, start, end) {
     console.log(symbol, start, end);
-    fetch(`http://localhost:8000/${symbol}/${start}/${end}`)
+    fetch(`http://localhost:8000/?symbol=${symbol}&startDate=${start}&endDate=${end}`)
+      .then(response => {
+        response.json().then(json => {          
+          this.setState({lastQuoteResponse: json});
+        });
+      })
+      .catch(err => console.error(err));
+
+    fetch(`http://localhost:8000/?symbol=${symbol}&startDate=${start}&endDate=${end}&dividend=true`)
       .then(response => {
         response.json().then(json => {
-          this.setState({lastResult: json});
+          this.setState({lastDividendResponse: json});
         });
       })
       .catch(err => console.error(err));
@@ -26,7 +35,7 @@ export default class App extends React.Component {
     return (
       <div>
         <InputRow onChange={this.handleChange.bind(this)}/>
-        <YahooResponseView response={this.state.lastResult}/>
+        <YahooResponseView quote={this.state.lastQuoteResponse} dividends={this.state.lastDividendResponse}/>
       </div>
     );
   }
