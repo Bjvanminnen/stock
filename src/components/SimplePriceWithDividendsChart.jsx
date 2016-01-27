@@ -17,35 +17,39 @@ const columns = [
   }
 ];
 
-// TODO - stateless component from react v.14?
-export default class SimplePriceWithDividendsChart extends React.Component {
-  static propTypes = {
-    quoteData: PropTypes.array.isRequired,
-    dividendData: PropTypes.array.isRequired
-  }
 
-  generateRows(data) {
-    const startVal = data[0].close;
-    const multiplier = 10000 / startVal;
+// To start with, we don't reinvest dividends
+const generateRows = (quoteData, dividendData, includeDividends) => {
+  const startVal = quoteData[0].close;
+  const numShares = 10000 / startVal;
 
-    return data.map(entry => [
-      entry.date,
-      (entry.close * multiplier)
-    ]);
-  }
+  const divByDate = dividendData.reduce((obj, entry) => {
+    obj[entry.date] = entry.dividends * numShares;
+    return obj;
+  }, {});
 
+  // assumes quote data is ordered by date
+  let totalDividends = 0;
+  const data = quoteData.map(entry => {
+    const { date } = entry;
+    if (includeDividends) {
+      totalDividends += (divByDate[date] || 0);
+    }
+    return [
+      date,
+      (entry.close * numShares) + totalDividends
+    ];
+  });
+  return data;
+};
 
-  render() {
-    const { quoteData, dividendData } = this.props;
-
-    // TODO - integrate dividend data
-
-    return <Chart
-      chartType="LineChart"
-      width={1000}
-      height={400}
-      options={options}
-      rows={this.generateRows(quoteData)}
-      columns={columns}/>;
-  }
-}
+const SimplePriceWithDividendsChart = ({quoteData, dividendData}) => {
+  return <Chart
+    chartType="LineChart"
+    width={1000}
+    height={400}
+    options={options}
+    rows={generateRows(quoteData, dividendData)}
+    columns={columns}/>;
+};
+export default SimplePriceWithDividendsChart;
