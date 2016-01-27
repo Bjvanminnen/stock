@@ -29,7 +29,7 @@ export default class SimplePriceWithDividendsChart extends React.Component {
     const multiplier = 10000 / startVal;
 
     return data.map(entry => [
-      new Date(entry.date),
+      entry.date,
       (entry.close * multiplier)
     ]);
   }

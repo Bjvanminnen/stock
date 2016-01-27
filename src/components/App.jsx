@@ -3,6 +3,8 @@ import React from 'react';
 import InputRow from './InputRow';
 import YahooResponseView from './YahooResponseView';
 
+import { getTickerData, getDividendData } from '../yahooData';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,21 +16,18 @@ export default class App extends React.Component {
 
   handleChange(symbol, start, end) {
     console.log(symbol, start, end);
-    fetch(`http://localhost:8000/?symbol=${symbol}&startDate=${start}&endDate=${end}`)
-      .then(response => {
-        response.json().then(json => {          
-          this.setState({lastQuoteResponse: json});
-        });
-      })
-      .catch(err => console.error(err));
 
-    fetch(`http://localhost:8000/?symbol=${symbol}&startDate=${start}&endDate=${end}&dividend=true`)
-      .then(response => {
-        response.json().then(json => {
-          this.setState({lastDividendResponse: json});
-        });
-      })
-      .catch(err => console.error(err));
+    getTickerData(symbol, start, end)
+    .then(json => {
+      this.setState({lastQuoteResponse: json});
+    })
+    .catch(err => console.log(err));
+
+    getDividendData(symbol, start, end)
+    .then(json => {
+      this.setState({lastDividendResponse: json});
+    })
+    .catch(err => console.error(err));
   }
 
   render() {
