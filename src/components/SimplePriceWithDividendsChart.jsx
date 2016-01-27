@@ -13,13 +13,17 @@ const columns = [
   },
   {
     type: 'number',
-    label: 'Value'
+    label: 'No Dividend'
+  },
+  {
+    type: 'number',
+    label: 'Dividend'
   }
 ];
 
 
 // To start with, we don't reinvest dividends
-const generateRows = (quoteData, dividendData, includeDividends) => {
+const generateRows = (quoteData, dividendData) => {
   const startVal = quoteData[0].close;
   const numShares = 10000 / startVal;
 
@@ -32,11 +36,11 @@ const generateRows = (quoteData, dividendData, includeDividends) => {
   let totalDividends = 0;
   const data = quoteData.map(entry => {
     const { date } = entry;
-    if (includeDividends) {
-      totalDividends += (divByDate[date] || 0);
-    }
+    totalDividends += (divByDate[date] || 0);
+
     return [
       date,
+      (entry.close * numShares),
       (entry.close * numShares) + totalDividends
     ];
   });
