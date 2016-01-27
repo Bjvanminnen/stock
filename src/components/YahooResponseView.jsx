@@ -3,13 +3,17 @@ import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 
 const styles = {
   pre: {
-    height: 300,
+    height: 200,
+    // width: '48%',
     overflow: 'scroll',
-    border: '1px solid black'
+    border: '1px solid black',
+    fontSize: 10,
+    margin: 5,
+    display: 'inline-block'
   }
 };
 
-export default class YahooResponseView extends React.Component {  
+export default class YahooResponseView extends React.Component {
   render() {
     const { quote, dividends } = this.props;
 
