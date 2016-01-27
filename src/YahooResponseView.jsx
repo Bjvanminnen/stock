@@ -1,6 +1,5 @@
 import React from 'react';
-// import { Chart } from 'react-google-charts';
-var Chart = require('react-google-charts').Chart;
+import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 
 const styles = {
   pre: {
@@ -22,35 +21,13 @@ export default class YahooResponseView extends React.Component {
   }
 
   render() {
-    const options = {
-      title: 'Close over time',
-      // hAxis: {title: 'Age', minValue: 0, maxValue: 15},
-      vAxis: {title: 'Close'},
-      // legend: 'none'
-    };
-
-    const columns = [
-      {
-        type: 'date',
-        label: 'Date'
-      },
-      {
-        type: 'number',
-        label: 'Value'
-      }
-    ];
-
     const { quote, dividends } = this.props;
 
     let chart;
-    if (quote) {
-      chart = <Chart
-        chartType="LineChart"
-        width={1000}
-        height={400}
-        options={options}
-        rows={this.generateRows(quote)}
-        columns={columns}/>;
+    if (quote && dividends) {
+      chart = <SimplePriceWithDividendsChart
+        quoteData={quote}
+        dividendData={dividends}/>
     }
 
     return (
