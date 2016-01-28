@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Chart } from 'react-google-charts';
 
 const options = {
@@ -21,39 +21,16 @@ const columns = [
   }
 ];
 
-
-// To start with, we don't reinvest dividends
-const generateRows = (quoteData, dividendData) => {
-  const startVal = quoteData[0].close;
-  const numShares = 10000 / startVal;
-
-  const divByDate = dividendData.reduce((obj, entry) => {
-    obj[entry.date] = entry.dividends * numShares;
-    return obj;
-  }, {});
-
-  // assumes quote data is ordered by date
-  let totalDividends = 0;
-  const data = quoteData.map(entry => {
-    const { date } = entry;
-    totalDividends += (divByDate[date] || 0);
-
-    return [
-      date,
-      (entry.close * numShares),
-      (entry.close * numShares) + totalDividends
-    ];
-  });
-  return data;
-};
-
-const SimplePriceWithDividendsChart = ({quoteData, dividendData}) => {
+const SimplePriceWithDividendsChart = ({data}) => {
+  if (!data) {
+    return <div>Loading...</div>;
+  }
   return <Chart
     chartType="LineChart"
     width={1000}
     height={400}
     options={options}
-    rows={generateRows(quoteData, dividendData)}
+    rows={data}
     columns={columns}/>;
 };
 export default SimplePriceWithDividendsChart;
