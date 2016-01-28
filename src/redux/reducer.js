@@ -24,28 +24,40 @@ const combineTickerAndDividend = (tickerData, dividendData) => {
   return data;
 };
 
-export default function reducer(state={}, action) {
-  let newState = state;
+/**
+ * Imports new data
+ */
+const applyAction = (state, action) => {
   if (action.type === GOT_TICKER_DATA) {
-    newState = {
+    return {
       ...state,
       ticker: action.data
     };
   }
 
   if (action.type === GOT_DIVIDEND_DATA) {
-    newState = {
+    return {
       ...state,
       dividend: action.data
     };
   }
+  return state;
+};
 
-  if (newState.ticker && newState.dividend) {
-    newState = {
-      ...newState,
-      combined: combineTickerAndDividend(newState.ticker, newState.dividend)
+/**
+ * Does necessary data processing
+ */
+const processData = (state) => {
+  if (state.ticker && state.dividend && !state.combined) {
+    return {
+      ...state,
+      combined: combineTickerAndDividend(state.ticker, state.dividend)
     };
   }
 
-  return newState;
+  return state;
+};
+
+export default function reducer(state={}, action) {
+  return processData(applyAction(state, action));
 };
