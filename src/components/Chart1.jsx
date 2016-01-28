@@ -6,7 +6,7 @@ import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 
 import { getData } from '../redux/actions';
 
-class App extends React.Component {
+class Chart1 extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,4 +30,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(state => state.chart1)(App);
+export default connect(state => state.chart1)(Chart1);
