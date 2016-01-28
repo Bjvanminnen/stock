@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import InputRow from './InputRow';
 import YahooResponseView from './YahooResponseView';
 
-import { getData } from '../redux';
+import { getData } from '../redux/actions';
 
 class App extends React.Component {
   constructor(props) {
