@@ -1,6 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { reducer } from './redux';
+import { Provider } from 'react-redux'
+import createLogger from 'redux-logger';
+
 import App from './components/App';
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+const logger = createLogger();
+
+// create a store that has redux-thunk middleware enabled
+const createStoreWithMiddleware = applyMiddleware(
+  thunk,
+  logger
+)(createStore);
+
+const store = createStoreWithMiddleware(reducer);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('app'));
