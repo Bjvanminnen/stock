@@ -30,4 +30,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(state => state)(App);
+export default connect(state => state.chart1)(App);
