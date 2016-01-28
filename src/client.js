@@ -19,6 +19,8 @@ const createStoreWithMiddleware = applyMiddleware(
 
 const store = createStoreWithMiddleware(reducer);
 
+window.__getState = () => store.getState();
+
 ReactDOM.render(
   <Provider store={store}>
     <App/>

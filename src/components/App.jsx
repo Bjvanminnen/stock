@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import InputRow from './InputRow';
-import YahooResponseView from './YahooResponseView';
+import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 
 import { getData } from '../redux/actions';
 
@@ -24,7 +24,7 @@ class App extends React.Component {
     return (
       <div>
         <InputRow onChange={this.handleChange}/>
-        <YahooResponseView quotes={ticker} dividends={dividend} data={combined}/>
+        <SimplePriceWithDividendsChart data={combined}/>
       </div>
     );
   }

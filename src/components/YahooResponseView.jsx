@@ -17,7 +17,7 @@ export default class YahooResponseView extends React.Component {
 
     return (
       <div>
-        <SimplePriceWithDividendsChart data={data}/>
+        
         <ResponseViewer data={quotes}/>
         <ResponseViewer data={dividends}/>
       </div>
