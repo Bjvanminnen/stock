@@ -6,6 +6,7 @@ import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 
 import { getData } from '../redux/actions';
 
+// TODO - could write a stateless component?
 class Chart1 extends React.Component {
   constructor(props) {
     super(props);

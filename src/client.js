@@ -7,7 +7,7 @@ import reducer from './redux/reducer';
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger';
 
-import Chart1 from './components/Chart1';
+import App from './components/App';
 
 const logger = createLogger();
 
@@ -23,6 +23,6 @@ window.__getState = () => store.getState();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Chart1/>
+    <App/>
   </Provider>,
   document.getElementById('app'));
