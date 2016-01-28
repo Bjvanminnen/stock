@@ -1,17 +1,6 @@
 import React from 'react';
 import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
-
-const styles = {
-  pre: {
-    height: 200,
-    // width: '48%',
-    overflow: 'scroll',
-    border: '1px solid black',
-    fontSize: 10,
-    margin: 5,
-    display: 'inline-block'
-  }
-};
+import ResponseViewer from './ResponseViewer';
 
 export default class YahooResponseView extends React.Component {
   render() {
@@ -27,8 +16,8 @@ export default class YahooResponseView extends React.Component {
     return (
       <div>
         {chart}
-        <pre style={styles.pre}>{JSON.stringify(quote, null, 2)}</pre>
-        <pre style={styles.pre}>{JSON.stringify(dividends, null, 2)}</pre>
+        <ResponseViewer data={quote}/>
+        <ResponseViewer data={dividends}/>
       </div>
     );
   }
