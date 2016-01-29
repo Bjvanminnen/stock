@@ -6,7 +6,10 @@ import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 
 import { getData } from '../redux/actions';
 
-// TODO - could write a stateless component?
+/**
+ * Displays a chart comparing a stock's value without dividends vs. with
+ * dividends (not reinvesting) over time.
+ */
 class Chart1 extends React.Component {
   constructor(props) {
     super(props);
