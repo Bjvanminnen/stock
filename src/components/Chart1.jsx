@@ -18,9 +18,9 @@ class Chart1 extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(symbol, start, end) {
+  handleChange(symbols, start, end) {
     const { dispatch } = this.props;
-    dispatch(getData(symbol, start, end));
+    dispatch(getData(symbols[0], start, end));
   }
 
   render() {
@@ -28,6 +28,7 @@ class Chart1 extends React.Component {
 
     return (
       <div>
+        <div>Select a single symbol</div>
         <InputRow onChange={this.handleChange}/>
         <Loader isLoaded={!!combined}>
           <SimplePriceWithDividendsChart data={combined}/>

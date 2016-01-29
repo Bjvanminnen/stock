@@ -6,18 +6,18 @@ export default class InputRow extends React.Component {
   }
 
   handleChange() {
-    const symbol = this.refs.symbol.value;
+    const symbols = this.refs.symbols.value;
     const start = this.refs.start.value;
     const end = this.refs.end.value;
     // TODO - could do some validate here
 
-    this.props.onChange(symbol, start, end);
+    this.props.onChange(symbols.split(','), start, end);
   }
 
   render() {
     return (
       <div>
-        Symbol: <input ref="symbol" defaultValue="SPY"/>
+        Symbols: <input ref="symbols" defaultValue="SPY"/>
         Start: <input type="date" defaultValue="2015-01-01" ref="start"/>
         End: <input type="date" defaultValue="2015-12-31" ref="end"/>
         <button onClick={this.handleChange.bind(this)}>Change</button>
