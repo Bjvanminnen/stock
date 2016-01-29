@@ -10,8 +10,6 @@ const LinkToHome = () => (
 );
 
 const Page = (props) => {
-  console.log(props);
-  console.log(props.location.pathname);
   return (
     <div>
       {props.location.pathname !== "/" ? <LinkToHome/> : undefined}

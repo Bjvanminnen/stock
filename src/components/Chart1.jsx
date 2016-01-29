@@ -25,10 +25,17 @@ class Chart1 extends React.Component {
   render() {
     const { ticker, dividend, combined } = this.props;
 
+    let chart;
+    if (combined) {
+      chart = <SimplePriceWithDividendsChart data={combined}/>;
+    } else {
+      chart = <div>Loading...</div>
+    }
+
     return (
       <div>
         <InputRow onChange={this.handleChange}/>
-        <SimplePriceWithDividendsChart data={combined}/>
+        {chart}
       </div>
     );
   }

@@ -22,9 +22,6 @@ const columns = [
 ];
 
 const SimplePriceWithDividendsChart = ({data}) => {
-  if (!data) {
-    return <div>Loading...</div>;
-  }
   return <Chart
     chartType="LineChart"
     width={1000}
