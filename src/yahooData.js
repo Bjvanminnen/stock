@@ -1,5 +1,7 @@
-const tickerUrl = (symbol, start, end) => (
-  `http://localhost:8000/?symbol=${symbol}&startDate=${start}&endDate=${end}`
+import _ from 'lodash';
+
+const tickerUrl = (symbols, start, end) => (
+  `http://localhost:8000/?symbols=${symbols}&startDate=${start}&endDate=${end}`
 );
 
 const dividendUrl = (...args) => tickerUrl(...args) + '&dividend=true';
@@ -16,26 +18,30 @@ const getData = function (url) {
   });
 };
 
-export const getTickerData = (symbol, start, end) => {
-  const url = tickerUrl(symbol, start, end);
-  return getData(url)
-  .then(json => {
-    return json.map(item => ({
-      // all we care about for now is date and close
-      date: new Date(item.date),
-      close: item.close
-    }));
-  });
+const dateAndClose = (stockData) => {
+  return stockData.map(item => ({
+    // all we care about for now is date and close
+    date: new Date(item.date),
+    close: item.close
+  }));
 };
 
-export const getDividendData = (symbol, start, end) => {
-  const url = dividendUrl(symbol, start, end);
+const dateAndDividends = (stockData) => {
+  return stockData.map(item => ({
+    // all we care about is date and dividends
+    date: new Date(item.date),
+    dividends: item.dividends
+  }));
+};
+
+export const getTickerData = (symbols, start, end) => {
+  const url = tickerUrl(symbols, start, end);
   return getData(url)
-  .then(json => {
-    return json.map(item => ({
-      // all we care about is date and dividends
-      date: new Date(item.date),
-      dividends: item.dividends
-    }));
-  });
+  .then(json => _.mapValues(json, dateAndClose));
+};
+
+export const getDividendData = (symbols, start, end) => {
+  const url = dividendUrl(symbols, start, end);
+  return getData(url)
+  .then(json => _.mapValues(json, dateAndDividends));
 };

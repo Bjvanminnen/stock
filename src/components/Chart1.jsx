@@ -5,7 +5,7 @@ import InputRow from './InputRow';
 import SimplePriceWithDividendsChart from './SimplePriceWithDividendsChart';
 import Loader from './Loader';
 
-import { getData } from '../redux/actions';
+import { getDataForSingleSymbol } from '../redux/actions';
 
 /**
  * Displays a chart comparing a stock's value without dividends vs. with
@@ -20,7 +20,7 @@ class Chart1 extends React.Component {
 
   handleChange(symbols, start, end) {
     const { dispatch } = this.props;
-    dispatch(getData(symbols[0], start, end));
+    dispatch(getDataForSingleSymbol(symbols[0], start, end));
   }
 
   render() {

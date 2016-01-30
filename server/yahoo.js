@@ -15,13 +15,13 @@ export const getDividends = (...args) => {
   return yahooRequest(...args, Period.Dividend);
 };
 
-const yahooRequest = (symbol, start, end, period) => {
+const yahooRequest = (symbols, start, end, period) => {
   return new Promise((resolve, reject) => {
-    console.log(`requesting ${symbol} ${start}, ${end}`);
+    console.log(`requesting ${symbols} ${start}, ${end}`);
     YF.historical({
       from: start,
       to: end,
-      symbol,
+      symbols,
       period
     }, (err, results) => {
       if (err) {
