@@ -15,7 +15,7 @@ class Chart2 extends React.Component {
 
   handleChange(symbols, start, end) {
     console.log(this.refs.index.value);
-    console.log(symbol);
+    console.log(symbol);    
   }
 
   render() {

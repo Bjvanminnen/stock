@@ -1,5 +1,5 @@
-export default function reducer(state={}, action) {
+export default function chart2(state={}, action) {
   return {
     data: 'something'
   };
-};
+}
