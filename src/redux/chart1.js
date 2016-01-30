@@ -51,9 +51,11 @@ const applyAction = (state, action) => {
  */
 const processData = (state) => {
   if (state.ticker && state.dividend && !state.combined) {
+    const symbol = Object.keys(state.ticker)[0];
     return {
       ...state,
-      combined: combineTickerAndDividend(state.ticker, state.dividend)
+      combined: combineTickerAndDividend(state.ticker[symbol],
+        state.dividend[symbol])
     };
   }
 

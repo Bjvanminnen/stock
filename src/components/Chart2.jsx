@@ -14,13 +14,14 @@ class Chart2 extends React.Component {
   }
 
   handleChange(symbols, start, end) {
-    console.log(symbols);
+    console.log(this.refs.index.value);
+    console.log(symbol);
   }
 
   render() {
     return (
       <div>
-        <div>Select multiple symbols</div>
+        Index symbol: <input ref="index" defaultValue="SPY"/>
         <InputRow onChange={this.handleChange}/>
         <pre>{JSON.stringify(this.props.data, null, 2)}</pre>
       </div>
