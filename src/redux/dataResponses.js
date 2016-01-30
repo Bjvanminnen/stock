@@ -1,6 +1,12 @@
 import { GOT_TICKER_DATA, GOT_DIVIDEND_DATA } from './actions';
 
-const dataResponseReducer = (state = {}, action) => {
+const initialState = {
+  ticker: {},
+  dividend: {}
+};
+
+
+const dataResponseReducer = (state = initialState, action) => {
   if (action.type === GOT_TICKER_DATA) {
     return {
       ...state,

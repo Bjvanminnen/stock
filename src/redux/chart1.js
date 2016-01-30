@@ -1,6 +1,6 @@
 // TODO - better name
 
-import { GOT_TICKER_DATA, GOT_DIVIDEND_DATA } from './actions';
+import { REQUEST_CHART1_DATA } from './actions';
 
 const combineTickerAndDividend = (tickerData, dividendData) => {
   const startVal = tickerData[0].close;
@@ -27,14 +27,30 @@ const combineTickerAndDividend = (tickerData, dividendData) => {
 };
 
 export default function reducer(state={}, action, dataResponses) {
-  const { ticker, dividend } = dataResponses;
-  if (ticker && dividend && !state.combined) {
-    const symbol = Object.keys(ticker)[0];
+  if (action.type === REQUEST_CHART1_DATA) {
+    const { symbol, start, end} = action;
     return {
       ...state,
-      combined: combineTickerAndDividend(ticker[symbol], dividend[symbol])
+      symbol,
+      start,
+      end
     };
   }
 
-  return state;
+  const { ticker, dividend } = dataResponses;
+  const symbol = state.symbol;
+  if (!symbol || state.combined) {
+    return state;
+  }
+
+  const chartTicker = ticker[symbol];
+  const chartDividend = dividend[symbol];
+  if (!chartTicker || !chartDividend) {
+    return state;
+  }
+
+  return {
+    ...state,
+    combined: combineTickerAndDividend(chartTicker, chartDividend)
+  };
 };
