@@ -24,7 +24,7 @@ class Chart1 extends React.Component {
   }
 
   render() {
-    const { ticker, dividend, combined } = this.props;
+    const { combined } = this.props;
 
     return (
       <div>

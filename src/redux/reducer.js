@@ -8,6 +8,6 @@ export default function reducer(state = {}, action) {
   return {
     dataResponses: newData,
     chart1: chart1(state.chart1, action, newData),
-    chart2: chart2(state.chart1, action, newData)
+    chart2: chart2(state.chart2, action, newData)
   };
 };
