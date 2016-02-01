@@ -22,7 +22,6 @@ const StockVsIndexChart = ({data, symbol, index}) => {
     }
   ];
 
-
   return <Chart
     chartType="LineChart"
     width={1000}

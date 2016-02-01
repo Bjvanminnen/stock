@@ -38,4 +38,8 @@ class Chart2 extends React.Component {
   }
 }
 
-export default connect(state => state.chart2)(Chart2);
+function selector(state) {
+  return state.chart2;
+}
+
+export default connect(selector)(Chart2);

@@ -21,7 +21,7 @@ const getData = function (url) {
 const dateAndClose = (stockData) => {
   return stockData.map(item => ({
     // all we care about for now is date and close
-    date: new Date(item.date),
+    date: item.date,
     close: item.close
   }));
 };
@@ -29,7 +29,7 @@ const dateAndClose = (stockData) => {
 const dateAndDividends = (stockData) => {
   return stockData.map(item => ({
     // all we care about is date and dividends
-    date: new Date(item.date),
+    date: item.date,
     dividends: item.dividends
   }));
 };

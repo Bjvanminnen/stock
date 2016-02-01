@@ -16,7 +16,7 @@ export default function normalizeData(tickerData, dividendData) {
     totalDividends += (divByDate[date] || 0);
 
     return [
-      date,
+      new Date(date),
       (entry.close * numShares),
       (entry.close * numShares) + totalDividends
     ];

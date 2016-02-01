@@ -1,4 +1,5 @@
 import { REQUEST_CHART2_DATA } from './actions';
+import { getData } from './dataResponses';
 
 import normalizeData from './normalizeData';
 
@@ -38,15 +39,16 @@ export default function chart2(state={}, action, dataResponses) {
   }
 
   const { ticker, dividend } = dataResponses;
-  const { index, symbol } = state;
+  const { index, symbol, start, end } = state;
   if (!index || !symbol || state.processed) {
     return state;
   }
 
-  const symbolTicker = ticker[symbol];
-  const symbolDividend = dividend[symbol];
-  const indexTicker = ticker[index];
-  const indexDividend = dividend[index];
+  const symbolTicker = getData(ticker, symbol, start, end);
+  const symbolDividend = getData(dividend, symbol, start, end);
+  const indexTicker = getData(ticker, index, start, end);
+  const indexDividend = getData(dividend, index, start, end);
+
   if (!symbolTicker || !symbolDividend || !indexTicker || !indexDividend) {
     return state;
   }

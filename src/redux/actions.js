@@ -12,7 +12,9 @@ const getData = (symbols, start, end) => {
     .then(json => {
       dispatch({
         type: GOT_TICKER_DATA,
-        data: json
+        data: json,
+        start,
+        end
       });
     })
     .catch(err => console.log(err));
@@ -21,7 +23,9 @@ const getData = (symbols, start, end) => {
     .then(json => {
       dispatch({
         type: GOT_DIVIDEND_DATA,
-        data: json
+        data: json,
+        start,
+        end
       });
     })
     .catch(err => console.error(err));

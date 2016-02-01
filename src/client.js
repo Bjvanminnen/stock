@@ -9,7 +9,9 @@ import createLogger from 'redux-logger';
 
 import App from './components/App';
 
-const logger = createLogger();
+const logger = createLogger({
+  collapsed: true
+});
 
 // create a store that has redux-thunk middleware enabled
 const createStoreWithMiddleware = applyMiddleware(
