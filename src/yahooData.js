@@ -22,7 +22,8 @@ const dateAndClose = (stockData) => {
   return stockData.map(item => ({
     // all we care about for now is date and close
     date: item.date,
-    close: item.close
+    close: item.close,
+    adjustedClose: item.adjClose
   }));
 };
 
