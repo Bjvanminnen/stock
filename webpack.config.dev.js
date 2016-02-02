@@ -9,16 +9,16 @@ var port = 3001;
 module.exports = assign({}, base, {
   entry: ['webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr']
     .concat(base.entry),
-  plugins: [
+  plugins: base.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     // new SuccessPlugin('npm run test')
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
-  ],
+  ]),
   output: assign({}, base.output, {
-    publicPath: 'http://' + host + ':' + port + '/js/'
+    publicPath: '/'    
   }),
   module: {
     loaders: [
@@ -40,6 +40,6 @@ module.exports = assign({}, base, {
           }
         }
       })
-    ]
+    ].concat(base.module.loaders.slice(1))
   }
 });
