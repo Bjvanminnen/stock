@@ -1,12 +1,12 @@
 import React from 'react';
 
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/lib/text-field';
 
 export default class Portfolio extends React.Component {
   render() {
     const { name } = this.props;
     return (
-      <RaisedButton>Rename</RaisedButton>
+      <TextField floatingLabelText="Portfolio name" defaultValue={name}/>
     );
   }
 }

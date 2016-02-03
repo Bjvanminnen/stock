@@ -42,7 +42,7 @@ class PortfolioSet extends React.Component {
       <Tabs index={this.state.index} onChange={this.handleTabChange}>
         {this.state.tabs.map((tab, index) => (
           <Tab key={index} label={tab} value={index}>
-            <Portfolio/>
+            <Portfolio name={tab}/>
           </Tab>
         ))}
         <Tab label="+" onActive={this.addTab}></Tab>
