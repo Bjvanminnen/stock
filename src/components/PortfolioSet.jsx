@@ -33,13 +33,12 @@ class PortfolioSet extends React.Component {
     }, 1);
   }
 
-  render() {
-    console.log(this.state.tabs);
+  render() {    
     return (
       <Tabs index={this.state.index} onChange={this.handleTabChange}>
         {this.state.tabs.map((tab, index) => (
           <Tab key={index} label={tab}>
-            <Portfolio/>
+            <Portfolio name={tab}/>
           </Tab>
         ))}
         <Portfolio/>

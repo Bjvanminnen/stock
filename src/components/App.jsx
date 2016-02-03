@@ -4,7 +4,9 @@ import { Router, Route, Link, IndexRoute, IndexLink } from 'react-router'
 
 import Chart1 from './Chart1';
 import Chart2 from './Chart2';
+import PortfolioPicker from './PortfolioPicker';
 import PortfolioSet from './PortfolioSet';
+import commons from 'react-toolbox/lib/commons.scss';
 
 const LinkToHome = () => (
   <div><IndexLink to="/">Back</IndexLink></div>
