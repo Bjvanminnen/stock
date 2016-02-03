@@ -1,7 +1,7 @@
-import { CHANGE_PORTFOLIO_NAME } from './actions';
+import { CHANGE_PORTFOLIO_NAME, CREATE_PORTFOLIO } from './actions';
 
 const initialState = {
-  names: ['one', 'two']
+  names: []
 };
 
 const replaceNth = (array, n, val) => {
@@ -16,6 +16,13 @@ export default function (state = initialState, action) {
     return {
       ...state,
       names: replaceNth(state.names, index, newName)
+    };
+  }
+
+  if (action.type === CREATE_PORTFOLIO) {
+    return {
+      ...state,
+      names: state.names.concat('New Portfolio')
     };
   }
   return state;

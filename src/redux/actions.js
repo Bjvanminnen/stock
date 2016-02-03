@@ -6,6 +6,7 @@ export const GOT_TICKER_DATA = 'stock/GOT_TICKER_DATA';
 export const GOT_DIVIDEND_DATA = 'stock/GOT_DIVIDEND_DATA';
 
 export const CHANGE_PORTFOLIO_NAME = 'stock/portfolio/CHANGE_PORTFOLIO_NAME';
+export const CREATE_PORTFOLIO = 'stock/portfolio/CREATE_PORTFOLIO';
 
 const getData = (symbols, start, end) => {
   return dispatch => {
@@ -68,3 +69,7 @@ export const changePortfolioName = (index, newName) => {
     newName
   };
 };
+
+export const createPortfolio = () => {
+  return { type: CREATE_PORTFOLIO };
+}

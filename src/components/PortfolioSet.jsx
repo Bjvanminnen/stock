@@ -6,7 +6,7 @@ import Tab from 'material-ui/lib/tabs/tab';
 
 import Portfolio from './Portfolio';
 
-import { changePortfolioName } from '../redux/actions';
+import { changePortfolioName, createPortfolio } from '../redux/actions';
 
 /**
  * Displays a chart comparing a stock's value without dividends vs. with
@@ -16,7 +16,6 @@ class PortfolioSet extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleTabChange = this.handleTabChange.bind(this);
     this.addTab = this.addTab.bind(this);
     this.changePortfolioName = this.changePortfolioName.bind(this);
 
@@ -26,17 +25,8 @@ class PortfolioSet extends React.Component {
   }
 
   addTab() {
-    return;
-    this.setState({
-      tabs: this.state.tabs.concat('New Portfolio')
-    });
-    setTimeout(() => {
-      this.setState({index: this.state.tabs.length - 1});
-    }, 1);
-  }
-
-  handleTabChange(index) {
-    this.setState({index});
+    const { dispatch } = this.props;
+    dispatch(createPortfolio());
   }
 
   changePortfolioName(index, newName) {
@@ -45,10 +35,10 @@ class PortfolioSet extends React.Component {
   }
 
   render() {
-    const { names } = this.props;
+    const { names, activePortfolioIndex } = this.props;
 
     return (
-      <Tabs index={this.state.index} onChange={this.handleTabChange}>
+      <Tabs>
         {names.map((name, index) => (
           <Tab key={index} label={name} value={index}>
             <Portfolio
