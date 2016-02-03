@@ -6,6 +6,8 @@ import Tab from 'material-ui/lib/tabs/tab';
 
 import Portfolio from './Portfolio';
 
+import { changePortfolioName } from '../redux/actions';
+
 /**
  * Displays a chart comparing a stock's value without dividends vs. with
  * dividends (not reinvesting) over time.
@@ -16,14 +18,15 @@ class PortfolioSet extends React.Component {
 
     this.handleTabChange = this.handleTabChange.bind(this);
     this.addTab = this.addTab.bind(this);
+    this.changePortfolioName = this.changePortfolioName.bind(this);
 
     this.state = {
-      index: -1,
-      tabs: []
+      index: -1
     };
   }
 
   addTab() {
+    return;
     this.setState({
       tabs: this.state.tabs.concat('New Portfolio')
     });
@@ -36,13 +39,22 @@ class PortfolioSet extends React.Component {
     this.setState({index});
   }
 
+  changePortfolioName(index, newName) {
+    const { dispatch } = this.props;
+    dispatch(changePortfolioName(index, newName));
+  }
+
   render() {
-    console.log(this.state.tabs);
+    const { names } = this.props;
+
     return (
       <Tabs index={this.state.index} onChange={this.handleTabChange}>
-        {this.state.tabs.map((tab, index) => (
-          <Tab key={index} label={tab} value={index}>
-            <Portfolio name={tab}/>
+        {names.map((name, index) => (
+          <Tab key={index} label={name} value={index}>
+            <Portfolio
+              name={name}
+              index={index}
+              onChangeName={this.changePortfolioName}/>
           </Tab>
         ))}
         <Tab label="+" onActive={this.addTab}></Tab>
@@ -51,4 +63,10 @@ class PortfolioSet extends React.Component {
   }
 }
 
-export default connect(state => state.portfolio)(PortfolioSet);
+const selector = (state) => {
+  return {
+    names: state.portfolio.names
+  };
+};
+
+export default connect(selector)(PortfolioSet);

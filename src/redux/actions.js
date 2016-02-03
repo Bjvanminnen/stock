@@ -5,6 +5,8 @@ export const REQUEST_CHART2_DATA = 'stock/CHART_2/REQUEST_DATA';
 export const GOT_TICKER_DATA = 'stock/GOT_TICKER_DATA';
 export const GOT_DIVIDEND_DATA = 'stock/GOT_DIVIDEND_DATA';
 
+export const CHANGE_PORTFOLIO_NAME = 'stock/portfolio/CHANGE_PORTFOLIO_NAME';
+
 const getData = (symbols, start, end) => {
   return dispatch => {
     // TODO - do something with errors beyond console.log?
@@ -58,3 +60,11 @@ export const getDataComparison = (index, symbol, start, end) => {
     getData([index, symbol], start, end)(dispatch);
   };
 }
+
+export const changePortfolioName = (index, newName) => {
+  return {
+    type: CHANGE_PORTFOLIO_NAME,
+    index,
+    newName
+  };
+};
