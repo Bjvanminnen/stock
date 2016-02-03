@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
 
 import Portfolio from './Portfolio';
 
@@ -14,23 +15,25 @@ class PortfolioSet extends React.Component {
     super(props);
 
     this.handleTabChange = this.handleTabChange.bind(this);
+    this.addTab = this.addTab.bind(this);
 
     this.state = {
-      index: 0,
+      index: -1,
       tabs: []
     };
   }
 
-  handleTabChange(index) {
-    if (index === this.state.tabs.length) {
-      this.setState({
-        tabs: this.state.tabs.concat('New Portfolio')
-      });
-    }
-    this.setState({index});
+  addTab() {
+    this.setState({
+      tabs: this.state.tabs.concat('New Portfolio')
+    });
     setTimeout(() => {
-      this.setState({index});
+      this.setState({index: this.state.tabs.length - 1});
     }, 1);
+  }
+
+  handleTabChange(index) {
+    this.setState({index});
   }
 
   render() {
@@ -38,12 +41,11 @@ class PortfolioSet extends React.Component {
     return (
       <Tabs index={this.state.index} onChange={this.handleTabChange}>
         {this.state.tabs.map((tab, index) => (
-          <Tab key={index} label={tab}>
+          <Tab key={index} label={tab} value={index}>
             <Portfolio/>
           </Tab>
         ))}
-        <Portfolio/>
-        <Tab label="+"></Tab>
+        <Tab label="+" onActive={this.addTab}></Tab>
       </Tabs>
     );
   }

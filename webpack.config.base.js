@@ -24,14 +24,8 @@ module.exports = {
         query: {
           stage: 0
         }
-      },
-      {        
-        test: /(\.scss|\.css)$/,
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass?sourceMap')
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin('react-toolbox.css', { allChunks: true })
-  ]
+  plugins: []  
 };

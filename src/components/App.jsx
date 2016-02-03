@@ -2,6 +2,10 @@ import React from 'react';
 
 import { Router, Route, Link, IndexRoute, IndexLink } from 'react-router'
 
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
+
+
 import Chart1 from './Chart1';
 import Chart2 from './Chart2';
 import PortfolioSet from './PortfolioSet';
