@@ -1,37 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux'
 
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import {Button} from 'react-toolbox/lib/button';
 
-/**
- * Displays a chart comparing a stock's value without dividends vs. with
- * dividends (not reinvesting) over time.
- */
-class Portfolio extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      index: 0
-    };
-  }
-
-  handleTabChange(index) {
-    this.setState({index});
-  }
-
+export default class Portfolio extends React.Component {
   render() {
-    // return <div>Portfolio</div>
+    const { name } = this.props;
     return (
-      <Tabs index={this.state.index} onChange={this.handleTabChange}>
-        <Tab label='Primary'><small>Primary content</small></Tab>
-        <Tab label='Secondary'><small>Secondary content</small></Tab>
-        <Tab label='Third'><small>Disabled content</small></Tab>
-        <Tab label='Fourth'><small>Fourth content hidden</small></Tab>
-        <Tab label='Fifth'><small>Fifth content</small></Tab>
-      </Tabs>
+      <Button raised>Rename</Button>
     );
   }
 }
-
-export default connect(state => state.portfolio)(Portfolio);
