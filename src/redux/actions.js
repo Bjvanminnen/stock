@@ -8,6 +8,9 @@ export const GOT_DIVIDEND_DATA = 'stock/GOT_DIVIDEND_DATA';
 export const CHANGE_PORTFOLIO_NAME = 'stock/portfolio/CHANGE_PORTFOLIO_NAME';
 export const CREATE_PORTFOLIO = 'stock/portfolio/CREATE_PORTFOLIO';
 
+export const CLEAR_STATE = 'stock/main/CLEAR_STATE';
+export const clearState = () => ({type: CLEAR_STATE});
+
 const getData = (symbols, start, end) => {
   return dispatch => {
     // TODO - do something with errors beyond console.log?
@@ -70,6 +73,4 @@ export const changePortfolioName = (index, newName) => {
   };
 };
 
-export const createPortfolio = () => {
-  return { type: CREATE_PORTFOLIO };
-}
+export const createPortfolio = () => ({ type: CREATE_PORTFOLIO });

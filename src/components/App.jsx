@@ -1,28 +1,14 @@
 import React from 'react';
 
-import { Router, Route, Link, IndexRoute, IndexLink } from 'react-router'
+import { Router, Route, Link, IndexRoute } from 'react-router'
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-
+import Page from './Page';
 import Chart1 from './Chart1';
 import Chart2 from './Chart2';
 import PortfolioSet from './PortfolioSet';
-
-const LinkToHome = () => (
-  <div><IndexLink to="/">Back</IndexLink></div>
-);
-
-const Page = (props) => {
-  return (
-    <div>
-      {props.location.pathname !== "/" ? <LinkToHome/> : undefined}
-      {props.children}
-    </div>
-  );
-
-};
 
 const Index = () => (
   <div>

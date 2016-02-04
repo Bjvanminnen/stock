@@ -3,7 +3,13 @@ import chart1 from './chart1';
 import chart2 from './chart2';
 import portfolio from './portfolio';
 
+import { CLEAR_STATE } from './actions';
+
 export default function reducer(state = {}, action) {
+  if (action.type === CLEAR_STATE) {
+    state = {};
+  }
+  
   const newData = dataResponses(state.dataResponses, action);
 
   return {
