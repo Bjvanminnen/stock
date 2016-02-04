@@ -22,12 +22,16 @@ const columns = [
 ];
 
 const SimplePriceWithDividendsChart = ({data}) => {
+  const chartData = data.map(row => {
+    const [dateString, noDiv, div] = row;
+    return [new Date(dateString), noDiv, div];
+  });
   return <Chart
     chartType="LineChart"
     width={1000}
     height={400}
     options={options}
-    rows={data}
+    rows={chartData}
     columns={columns}/>;
 };
 export default SimplePriceWithDividendsChart;

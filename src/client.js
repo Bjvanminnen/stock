@@ -13,13 +13,23 @@ const logger = createLogger({
   collapsed: true
 });
 
+const setLocal = store => next => action => {
+  next(action);
+  const newState = store.getState();
+  localStorage.setItem('redux', JSON.stringify(newState));
+};
+
+const cachedStore = localStorage.getItem('redux');
+const initialState = cachedStore ? JSON.parse(cachedStore) : undefined;
+
 // create a store that has redux-thunk middleware enabled
 const createStoreWithMiddleware = applyMiddleware(
   thunk,
+  setLocal,
   logger
 )(createStore);
 
-const store = createStoreWithMiddleware(reducer);
+const store = createStoreWithMiddleware(reducer, initialState);
 
 window.__getState = () => store.getState();
 

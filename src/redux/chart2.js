@@ -13,7 +13,7 @@ const processData = (symbolTicker, symbolDividend, indexTicker, indexDividend) =
 
   return normalSymbol.map((symbolRow, index) => {
     const indexRow = normalIndex[index];
-    if (symbolRow[0].getTime() !== indexRow[0].getTime()) {
+    if (new Date(symbolRow[0]).getTime() !== new Date(indexRow[0]).getTime()) {
       throw new Error('different dates');
     }
 
