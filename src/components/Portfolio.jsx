@@ -5,6 +5,10 @@ import TextField from 'material-ui/lib/text-field';
 import StockList from './StockList';
 
 export default class Portfolio extends React.Component {
+  static propTypes = {
+    // TODO
+  }
+
   constructor(props) {
     super(props);
 
@@ -18,14 +22,14 @@ export default class Portfolio extends React.Component {
   }
 
   render() {
-    const { name } = this.props;
+    const { name, stocks, addStock } = this.props;
     return (
       <div>
         <TextField
           floatingLabelText="Portfolio name"
           onChange={this.handleChange}
           defaultValue={name}/>
-        <StockList/>
+        <StockList stocks={stocks} addStock={addStock}/>
       </div>
     );
   }

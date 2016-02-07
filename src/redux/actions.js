@@ -8,6 +8,9 @@ export const GOT_DIVIDEND_DATA = 'stock/GOT_DIVIDEND_DATA';
 export const CHANGE_PORTFOLIO_NAME = 'stock/portfolio/CHANGE_PORTFOLIO_NAME';
 export const CREATE_PORTFOLIO = 'stock/portfolio/CREATE_PORTFOLIO';
 
+export const ADD_STOCK = 'stock/portfolio/ADD_STOCK';
+export const addStock = (id) => ({type: ADD_STOCK, id});
+
 export const CLEAR_STATE = 'stock/main/CLEAR_STATE';
 export const clearState = () => ({type: CLEAR_STATE});
 

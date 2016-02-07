@@ -17,17 +17,6 @@ const nextId = (currentIds) => {
 };
 
 export default function (state = initialState, action) {
-  if (action.type === CHANGE_PORTFOLIO_NAME) {
-    const { id, newName } = action;
-    return {
-      ...state,
-      values: {
-        ...state.values,
-        [id]: portfolio(state.values[id], action)
-      }      
-    };
-  }
-
   if (action.type === CREATE_PORTFOLIO) {
     const { ids, values } = state;
     const newId = nextId(ids);
@@ -35,9 +24,20 @@ export default function (state = initialState, action) {
       ...state,
       ids: ids.concat(newId),
       values: {
+        ...values,
         [newId]: portfolio(undefined, CREATE_PORTFOLIO)
       }
     };
   }
+
+  const { id } = action;
+  return {
+    ...state,
+    values: {
+      ...state.values,
+      [id]: portfolio(state.values[id], action)
+    }
+  };
+  
   return state;
 }
