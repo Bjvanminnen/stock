@@ -65,10 +65,10 @@ export const getDataComparison = (index, symbol, start, end) => {
   };
 }
 
-export const changePortfolioName = (index, newName) => {
+export const changePortfolioName = (id, newName) => {
   return {
     type: CHANGE_PORTFOLIO_NAME,
-    index,
+    id,
     newName
   };
 };

@@ -2,6 +2,8 @@ import React from 'react';
 
 import TextField from 'material-ui/lib/text-field';
 
+import StockList from './StockList';
+
 export default class Portfolio extends React.Component {
   constructor(props) {
     super(props);
@@ -11,17 +13,20 @@ export default class Portfolio extends React.Component {
 
   handleChange(event) {
     const newName = event.target.value;
-    const { index, onChangeName } = this.props;
-    onChangeName(index, newName);
+    const { id, onChangeName } = this.props;
+    onChangeName(id, newName);
   }
 
   render() {
     const { name } = this.props;
     return (
-      <TextField
-        floatingLabelText="Portfolio name"
-        onChange={this.handleChange}
-        defaultValue={name}/>
+      <div>
+        <TextField
+          floatingLabelText="Portfolio name"
+          onChange={this.handleChange}
+          defaultValue={name}/>
+        <StockList/>
+      </div>
     );
   }
 }
