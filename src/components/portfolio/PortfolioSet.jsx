@@ -6,7 +6,7 @@ import Tab from 'material-ui/lib/tabs/tab';
 
 import Portfolio from './Portfolio';
 
-import { changePortfolioName, createPortfolio, addStock } from '../redux/actions';
+import { changePortfolioName, createPortfolio, addStock } from '../../redux/actions';
 
 /**
  * Displays a chart comparing a stock's value without dividends vs. with

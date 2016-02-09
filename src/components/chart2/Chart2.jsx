@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import InputRow from './InputRow';
-import Loader from './Loader';
+import InputRow from '../InputRow';
+import Loader from '../Loader';
 import StockVsIndexChart from './StockVsIndexChart';
 
-import { getDataComparison } from '../redux/actions';
+import { getDataComparison } from '../../redux/actions';
 
 /**
  * Displays a chart comparing the value of two or more stocks over time

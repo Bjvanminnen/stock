@@ -6,9 +6,9 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
 import Page from './Page';
-import Chart1 from './Chart1';
-import Chart2 from './Chart2';
-import PortfolioSet from './PortfolioSet';
+import Chart1 from './chart1/Chart1';
+import Chart2 from './chart2/Chart2';
+import PortfolioSet from './portfolio/PortfolioSet';
 
 const Index = () => (
   <div>
