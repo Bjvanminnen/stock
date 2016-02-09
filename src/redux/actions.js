@@ -14,6 +14,12 @@ export const addStock = (id) => ({type: ADD_STOCK, id});
 export const CLEAR_STATE = 'stock/main/CLEAR_STATE';
 export const clearState = () => ({type: CLEAR_STATE});
 
+export const CHANGE_ACTIVE_PORTFOLIO = 'stock/portfolioChart/CHANGE_ACTIVE_PORTFOLIO';
+export const changeActivePortfolio = (id) => ({
+  type: CHANGE_ACTIVE_PORTFOLIO,
+  id: id
+});
+
 const getData = (symbols, start, end) => {
   return dispatch => {
     // TODO - do something with errors beyond console.log?

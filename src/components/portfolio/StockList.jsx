@@ -8,10 +8,10 @@ import AddCircleOutline from 'material-ui/lib/svg-icons/content/add-circle-outli
 import TextField from 'material-ui/lib/text-field';
 
 export default class StockList extends React.Component {
-  static propTypes = {
-    stocks: React.PropTypes.array.isRequired,
-    addStock: React.PropTypes.func.isRequired
-  }
+  // static propTypes = {
+  //   stocks: React.PropTypes.array.isRequired,
+  //   addStock: React.PropTypes.func.isRequired
+  // }
 
   render () {
     const { stocks, addStock } = this.props;
