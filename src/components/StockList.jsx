@@ -22,11 +22,12 @@ export default class StockList extends React.Component {
             <ToolbarTitle text="Stocks"/>
           </ToolbarGroup>
         </Toolbar>
-        {stocks.map((stock, index) => (
+        {/* TODO - disabled
+          stocks.map((stock, index) => (
           <div key={index}>
             <TextField defaultValue={stock}/>
           </div>
-        ))}
+        ))*/}
         <IconButton onClick={addStock}>
           <AddCircleOutline/>
         </IconButton>
