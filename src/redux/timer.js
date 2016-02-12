@@ -33,6 +33,6 @@ export default function reducer(state = initialState, action, dataResponses) {
 
   return {
     ...state,
-    data: { loaded: true }
+    data: { symbolTicker }
   };
 }
