@@ -20,6 +20,6 @@ export default function reducer(state = {}, action) {
     chart2: chart2(state.chart2, action, newData),
     portfolios: portfolios(state.portfolios, action),
     portfolioChart: portfolioChart(state.portfolioChart, action, newData),
-    timer: timer(state.timer, action)
+    timer: timer(state.timer, action, newData)
   };
 };

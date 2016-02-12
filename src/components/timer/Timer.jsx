@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import { timerLoad } from '../../redux/actions';
+
 class Timer extends React.Component {
   componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(timerLoad());
   }
 
   render() {
