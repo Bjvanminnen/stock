@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import DailyChange from './DailyChange';
-import PausePlay from './PausePlay';
+import PlayStateButtons from './PlayStateButtons';
 
 import { timerLoad } from '../../redux/actions';
 
@@ -20,31 +20,72 @@ class Timer extends React.Component {
     super(props);
 
     this.togglePlay = this.togglePlay.bind(this);
+    this.handleRewind = this.handleRewind.bind(this);
+    this.handleFastForward = this.handleFastForward.bind(this);
+
+    this.intervalId = null;
 
     this.state = {
       date: null,
-      isPlaying: false
+      isPlaying: false,
+      index: 600
     };
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(timerLoad());
+
+    // TODO - the right time to start this might be elsewhere?
+    this.intervalId = setInterval(this.onTick.bind(this), 2000);
+  }
+
+  onTick() {
+    if (!this.state.isPlaying) {
+      return;
+    }
+
+    // TODO - would i prefer to capture this in redux?
+    this.setState({ index: this.state.index + 1});
   }
 
   togglePlay() {
     this.setState({ isPlaying: !this.state.isPlaying });
   }
 
+  handleRewind() {
+    if (this.state.index === 0) {
+      return;
+    }
+
+    this.setState({ index: this.state.index - 1 });
+  }
+
+  handleFastForward() {
+    if (this.state.index + 1 === this.props.numDays) {
+      return;
+    }
+
+    this.setState({ index: this.state.index + 1 });
+  }
+
   render() {
     const { data } = this.props;
-    const { isPlaying } = this.state;
+    const { isPlaying, index } = this.state;
 
     return (
       <div>
-        <DailyChange val={1.23} percent={0.54}/>
-        <PausePlay isPlaying={isPlaying} onClick={this.togglePlay}/>
-        <pre style={styles.pre}>{data}</pre>
+        <DailyChange
+          data={data}
+          index={index}
+          />
+        <PlayStateButtons
+          isPlaying={isPlaying}
+          onTogglePlay={this.togglePlay}
+          onRewind={this.handleRewind}
+          onFastForward={this.handleFastForward}
+          />
+        <pre style={styles.pre}>{JSON.stringify(data, null ,2)}</pre>
       </div>
     );
   }
@@ -54,7 +95,8 @@ const selector = (state) => {
   const { timer } = state;
 
   return {
-    data: JSON.stringify(timer.data, null, 2)
+    data: timer.data.symbolTicker,
+    numDays: timer.data.symbolTicker.length
   };
 };
 
