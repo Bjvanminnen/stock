@@ -10,6 +10,7 @@ import Chart1 from './chart1/Chart1';
 import Chart2 from './chart2/Chart2';
 import PortfolioSet from './portfolio/PortfolioSet';
 import PortfolioChart from './portfolioChart/PortfolioChart';
+import Timer from './timer/Timer';
 
 const Index = () => (
   <div>
@@ -18,6 +19,7 @@ const Index = () => (
     <div><Link to="/chart2">Chart2</Link></div>
     <div><Link to="/portfolio">Portfolio</Link></div>
     <div><Link to="/portfolioChart">PortfolioChart</Link></div>
+    <div><Link to="/timer">Timer</Link></div>
   </div>
 );
 
@@ -29,6 +31,7 @@ const App = () => (
       <Route path="chart2" component={Chart2}/>
       <Route path="portfolio" component={PortfolioSet}/>
       <Route path="portfolioChart" component={PortfolioChart}/>
+      <Route path="timer" component={Timer}/>
     </Route>
   </Router>
 );
