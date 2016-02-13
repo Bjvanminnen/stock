@@ -26,21 +26,15 @@ export default class PlayStateButtons extends React.Component {
   }
 
   render() {
-    const { isPlaying, onTogglePlay, onRewind, onFastForward } = this.props;
+    const { isPlaying, onTogglePlay } = this.props;
 
     const PlayPauseIcon = isPlaying ? Pause : Play;
     return (
       <span style={styles.main}>
         <Slider defaultValue={0.5} style={styles.slider} onChange={this.changeSlider.bind(this)}/>
         <div>
-          <FloatingActionButton mini={true} style={styles.button} onClick={onRewind}>
-            <Rewind />
-          </FloatingActionButton>
           <FloatingActionButton mini={true} style={styles.button} onClick={onTogglePlay}>
             <PlayPauseIcon />
-          </FloatingActionButton>
-          <FloatingActionButton mini={true} style={styles.button} onClick={onFastForward}>
-            <FastForward />
           </FloatingActionButton>
         </div>
       </span>

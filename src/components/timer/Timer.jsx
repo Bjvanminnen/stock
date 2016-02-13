@@ -22,9 +22,8 @@ class Timer extends React.Component {
     super(props);
 
     this.togglePlay = this.togglePlay.bind(this);
-    this.handleRewind = this.handleRewind.bind(this);
-    this.handleFastForward = this.handleFastForward.bind(this);
     this.onTick = this.onTick.bind(this);
+    this.handleChangeSlider = this.handleChangeSlider.bind(this);
 
     this.state = {
       date: null,
@@ -50,6 +49,7 @@ class Timer extends React.Component {
     // TODO - would i prefer to capture this in redux?
     this.setState({ index: this.state.index + 1});
 
+    console.log(INTERVAL * 2 * this.state.speed);
     setTimeout(this.onTick, INTERVAL * 2 * this.state.speed);
   }
 
@@ -61,24 +61,8 @@ class Timer extends React.Component {
     }
   }
 
-  handleRewind() {
-    if (this.state.index === 0) {
-      return;
-    }
-
-    this.setState({ index: this.state.index - 1 });
-  }
-
-  handleFastForward() {
-    if (this.state.index + 1 === this.props.numDays) {
-      return;
-    }
-
-    this.setState({ index: this.state.index + 1 });
-  }
-
-  handleChangeSlider(speed) {
-    this.setState({ speed });
+  handleChangeSlider(value) {
+    this.setState({ speed: 1 - value });
   }
 
   render() {
@@ -103,8 +87,6 @@ class Timer extends React.Component {
           isPlaying={isPlaying}
           onChangeSlider={this.handleChangeSlider}
           onTogglePlay={this.togglePlay}
-          onRewind={this.handleRewind}
-          onFastForward={this.handleFastForward}
           />
         <pre style={styles.pre}>{JSON.stringify(data, null ,2)}</pre>
       </div>
