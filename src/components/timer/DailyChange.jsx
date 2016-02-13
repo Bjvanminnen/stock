@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import Paper from 'material-ui/lib/paper';
 
@@ -7,7 +6,7 @@ const styles = {
   main: {
     display: 'inline-block',
     padding: 5,
-    margin: 10    
+    margin: 10
   },
   date: {
     fontWeight: 'bolder'
@@ -20,6 +19,20 @@ const styles = {
   }
 };
 
+const formatDate = dateString => {
+  const date = new Date(dateString);
+  let month = (date.getMonth() + 1).toString();
+  if (month.length === 1) {
+    month = '0' + month;
+  }
+  let day = date.getDate().toString();
+  if (day.length === 1) {
+    day = '0' + day;
+  }
+  let year = (date.getYear() + 1900).toString();
+
+  return month + '-' + day + '-' + year;
+};
 
 class DailyChange extends React.Component {
   render() {
@@ -28,7 +41,7 @@ class DailyChange extends React.Component {
     let paperContents;
 
     if (index >= 0) {
-      const date = moment(data[index].date).format('MM-DD-YYYY');
+      const date = formatDate(data[index].date);
       const val = data[index].close;
       const previousVal = index === 0 ? val : data[index - 1].close;
       const delta = val - previousVal;
