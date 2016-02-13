@@ -5,7 +5,8 @@ const initialState = {
   symbol: null,
   start: null,
   end: null,
-  data: {foo: 'bar'}
+  index: 600,  
+  data: null
 };
 
 export default function reducer(state = initialState, action, dataResponses) {
@@ -16,6 +17,13 @@ export default function reducer(state = initialState, action, dataResponses) {
       symbol,
       start,
       end
+    };
+  }
+
+  if (action.type === TICK) {
+    return {
+      ...state,
+      index: state.index + 1
     };
   }
 

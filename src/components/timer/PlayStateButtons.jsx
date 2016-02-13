@@ -17,18 +17,10 @@ const styles = {
   },
   button: {
     margin: 5
-  },
-  slider: {
-    marginBottom: 10,
-    width: 400
   }
 };
 
 export default class PlayStateButtons extends React.Component {
-  changeSlider(event, value) {
-    this.props.onChangeSlider(value);
-  }
-
   render() {
     const { isPlaying, onTogglePlay } = this.props;
 
@@ -40,7 +32,6 @@ export default class PlayStateButtons extends React.Component {
             <PlayPauseIcon />
           </FloatingActionButton>
         </div>
-        <Slider defaultValue={0.5} style={styles.slider} onChange={this.changeSlider.bind(this)}/>
       </span>
     );
   }

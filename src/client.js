@@ -3,15 +3,25 @@ import ReactDOM from 'react-dom';
 
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from './redux/reducer';
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger';
 
+
 import App from './components/App';
+import reducer from './redux/reducer';
+import { TICK } from './redux/timerActions';
 
 const logger = createLogger({
   collapsed: true
 });
+
+const wrappedLogger = store => next => action => {
+  if (action.type === TICK) {
+    next(action);
+  } else {
+    logger(store)(next)(action);
+  }
+};
 
 const setLocal = store => next => action => {
   next(action);
@@ -26,7 +36,7 @@ const initialState = cachedStore ? JSON.parse(cachedStore) : undefined;
 const createStoreWithMiddleware = applyMiddleware(
   thunk,
   setLocal,
-  logger
+  wrappedLogger
 )(createStore);
 
 const store = createStoreWithMiddleware(reducer, initialState);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import DailyChange from './DailyChange';
 import PlayStateButtons from './PlayStateButtons';
 
-import { load } from '../../redux/timerActions';
+import { load, tick } from '../../redux/timerActions';
 
 const INTERVAL = 1000;
 
@@ -23,12 +23,10 @@ class Timer extends React.Component {
 
     this.togglePlay = this.togglePlay.bind(this);
     this.onTick = this.onTick.bind(this);
-    this.handleChangeSlider = this.handleChangeSlider.bind(this);
 
     this.state = {
       date: null,
       isPlaying: false,
-      index: 600,
       speed: 0.5
     };
   }
@@ -46,10 +44,8 @@ class Timer extends React.Component {
       return;
     }
 
-    // TODO - would i prefer to capture this in redux?
-    this.setState({ index: this.state.index + 1});
-
-    console.log(INTERVAL * 2 * this.state.speed);
+    const { dispatch } = this.props;
+    dispatch(tick());    
     setTimeout(this.onTick, INTERVAL * 2 * this.state.speed);
   }
 
@@ -61,13 +57,9 @@ class Timer extends React.Component {
     }
   }
 
-  handleChangeSlider(value) {
-    this.setState({ speed: 1 - value });
-  }
-
   render() {
-    const { data } = this.props;
-    const { isPlaying, index } = this.state;
+    const { data, index } = this.props;
+    const { isPlaying } = this.state;
 
     return (
       <div>
@@ -101,7 +93,7 @@ const selector = (state) => {
 
   return {
     data: timer.data.symbolTicker,
-    numDays: timer.data.symbolTicker.length
+    index: timer.index
   };
 };
 
