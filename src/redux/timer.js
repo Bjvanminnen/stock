@@ -1,4 +1,4 @@
-import { TIMER_LOAD } from './actions';
+import { LOAD, TICK } from './timerActions';
 import { getData } from './dataResponses';
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action, dataResponses) {
-  if (action.type === TIMER_LOAD) {
+  if (action.type === LOAD) {
     const { symbol, start, end } = action;
     return {
       ...state,

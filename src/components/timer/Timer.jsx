@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import DailyChange from './DailyChange';
 import PlayStateButtons from './PlayStateButtons';
 
-import { timerLoad } from '../../redux/actions';
+import { load } from '../../redux/timerActions';
 
 const INTERVAL = 1000;
 
@@ -35,7 +35,7 @@ class Timer extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(timerLoad());
+    dispatch(load());
 
     // TODO - the right time to start this might be elsewhere?
     setTimeout(this.onTick, INTERVAL);

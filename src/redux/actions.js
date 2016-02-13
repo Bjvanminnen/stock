@@ -20,25 +20,6 @@ export const changeActivePortfolio = (id) => ({
   id: id
 });
 
-export const TIMER_LOAD = 'stock/timer/TIMER_LOAD';
-export const timerLoad = () => {
-  return dispatch => {
-    const now = new Date();
-    const start = '1993-01-01';
-    const symbol = 'SPY';
-    const end = (now.getYear() + 1900) + '-' + (now.getMonth() + 1) + '-' + now.getDate();
-
-    dispatch({
-      type: TIMER_LOAD,
-      symbol,
-      start,
-      end
-    });
-
-    dispatch(getData([symbol], start, end));
-  }
-};
-
 const getData = (symbols, start, end) => {
   return dispatch => {
     // TODO - do something with errors beyond console.log?
