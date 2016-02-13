@@ -71,18 +71,20 @@ class Timer extends React.Component {
 
     return (
       <div>
-        <DailyChange
-          data={data}
-          index={index - 2}
-          />
-        <DailyChange
-          data={data}
-          index={index - 1}
-          />
-        <DailyChange
-          data={data}
-          index={index}
-          />
+        <div style={{width: 400, textAlign: 'center'}}>
+          <DailyChange
+            data={data}
+            index={index - 2}
+            />
+          <DailyChange
+            data={data}
+            index={index - 1}
+            />
+          <DailyChange
+            data={data}
+            index={index}
+            />
+        </div>
         <PlayStateButtons
           isPlaying={isPlaying}
           onChangeSlider={this.handleChangeSlider}

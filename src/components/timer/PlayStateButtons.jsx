@@ -11,6 +11,10 @@ const styles = {
   main: {
     marginTop: 10
   },
+  buttonDiv: {
+    width: 400,
+    textAlign: 'center'
+  },
   button: {
     margin: 5
   },
@@ -31,12 +35,12 @@ export default class PlayStateButtons extends React.Component {
     const PlayPauseIcon = isPlaying ? Pause : Play;
     return (
       <span style={styles.main}>
-        <Slider defaultValue={0.5} style={styles.slider} onChange={this.changeSlider.bind(this)}/>
-        <div>
+        <div style={styles.buttonDiv}>
           <FloatingActionButton mini={true} style={styles.button} onClick={onTogglePlay}>
             <PlayPauseIcon />
           </FloatingActionButton>
         </div>
+        <Slider defaultValue={0.5} style={styles.slider} onChange={this.changeSlider.bind(this)}/>
       </span>
     );
   }

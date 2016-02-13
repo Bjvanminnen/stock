@@ -7,7 +7,10 @@ const styles = {
   main: {
     display: 'inline-block',
     padding: 5,
-    margin: 10
+    margin: 10    
+  },
+  date: {
+    fontWeight: 'bolder'
   },
   positive: {
     color: 'green'
@@ -41,7 +44,7 @@ class DailyChange extends React.Component {
 
       paperContents = (
         <span>
-          <div>{date}</div>
+          <div style={styles.date}>{date}</div>
           <div style={styles.val}>{val}</div>
           <div style={diffStyle}>{delta.toLocaleString(undefined, options)}</div>
           <div style={diffStyle}>{percent.toLocaleString(undefined, options)}%</div>
