@@ -6,6 +6,8 @@ import PlayStateButtons from './PlayStateButtons';
 
 import { timerLoad } from '../../redux/actions';
 
+const INTERVAL = 1000;
+
 const styles = {
   pre: {
     height: 200,
@@ -22,13 +24,13 @@ class Timer extends React.Component {
     this.togglePlay = this.togglePlay.bind(this);
     this.handleRewind = this.handleRewind.bind(this);
     this.handleFastForward = this.handleFastForward.bind(this);
-
-    this.intervalId = null;
+    this.onTick = this.onTick.bind(this);
 
     this.state = {
       date: null,
       isPlaying: false,
-      index: 600
+      index: 600,
+      speed: 0.5
     };
   }
 
@@ -37,7 +39,7 @@ class Timer extends React.Component {
     dispatch(timerLoad());
 
     // TODO - the right time to start this might be elsewhere?
-    this.intervalId = setInterval(this.onTick.bind(this), 2000);
+    setTimeout(this.onTick, INTERVAL);
   }
 
   onTick() {
@@ -47,10 +49,16 @@ class Timer extends React.Component {
 
     // TODO - would i prefer to capture this in redux?
     this.setState({ index: this.state.index + 1});
+
+    setTimeout(this.onTick, INTERVAL * 2 * this.state.speed);
   }
 
   togglePlay() {
-    this.setState({ isPlaying: !this.state.isPlaying });
+    const isPlaying = !this.state.isPlaying;
+    this.setState({ isPlaying });
+    if (isPlaying) {
+      setTimeout(this.onTick, INTERVAL);
+    }
   }
 
   handleRewind() {
@@ -69,6 +77,10 @@ class Timer extends React.Component {
     this.setState({ index: this.state.index + 1 });
   }
 
+  handleChangeSlider(speed) {
+    this.setState({ speed });
+  }
+
   render() {
     const { data } = this.props;
     const { isPlaying, index } = this.state;
@@ -77,10 +89,19 @@ class Timer extends React.Component {
       <div>
         <DailyChange
           data={data}
+          index={index - 2}
+          />
+        <DailyChange
+          data={data}
+          index={index - 1}
+          />
+        <DailyChange
+          data={data}
           index={index}
           />
         <PlayStateButtons
           isPlaying={isPlaying}
+          onChangeSlider={this.handleChangeSlider}
           onTogglePlay={this.togglePlay}
           onRewind={this.handleRewind}
           onFastForward={this.handleFastForward}
