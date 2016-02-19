@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import DailyChange from './DailyChange';
 import PlayStateButtons from './PlayStateButtons';
+import CurrentValue from './CurrentValue';
 
 import { load, tick } from '../../redux/timerActions';
 
@@ -45,7 +46,7 @@ class Timer extends React.Component {
     }
 
     const { dispatch } = this.props;
-    dispatch(tick());    
+    dispatch(tick());
     setTimeout(this.onTick, INTERVAL * 2 * this.state.speed);
   }
 
@@ -82,6 +83,10 @@ class Timer extends React.Component {
           onChangeSlider={this.handleChangeSlider}
           onTogglePlay={this.togglePlay}
           />
+        <CurrentValue
+          data={data}
+          index={index}
+        />
         <pre style={styles.pre}>{JSON.stringify(data, null ,2)}</pre>
       </div>
     );
