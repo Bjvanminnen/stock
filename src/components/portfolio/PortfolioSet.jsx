@@ -40,15 +40,15 @@ class PortfolioSet extends React.Component {
   }
 
   render() {
-    const { items, activePortfolioIndex } = this.props;
+    const { portfolios, activePortfolioIndex } = this.props;
 
     return (
       <Tabs>
-        {items.map(({id, portfolio}) => (
+        {portfolios.map(({id, portfolio}) => (
           <Tab key={id} label={portfolio.name} value={id}>
             <Portfolio
               name={portfolio.name}
-              stocks={portfolio.stocks}
+              stocks={portfolio.values}
               id={id}
               onChangeName={this.changePortfolioName}
               addStock={this.addStock.bind(this, id)}/>
@@ -63,7 +63,7 @@ class PortfolioSet extends React.Component {
 const selector = (state) => {
   const { ids, values } = state.portfolios;
   return {
-    items: ids.map(id => ({
+    portfolios: ids.map(id => ({
       id: id,
       portfolio: values[id]
     }))

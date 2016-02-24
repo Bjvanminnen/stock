@@ -8,10 +8,10 @@ import AddCircleOutline from 'material-ui/lib/svg-icons/content/add-circle-outli
 import TextField from 'material-ui/lib/text-field';
 
 export default class StockList extends React.Component {
-  // static propTypes = {
-  //   stocks: React.PropTypes.array.isRequired,
+  static propTypes = {
+    stocks: React.PropTypes.array.isRequired,
   //   addStock: React.PropTypes.func.isRequired
-  // }
+  }
 
   render () {
     const { stocks, addStock } = this.props;
@@ -22,12 +22,12 @@ export default class StockList extends React.Component {
             <ToolbarTitle text="Stocks"/>
           </ToolbarGroup>
         </Toolbar>
-        {/* TODO - disabled
-          stocks.map((stock, index) => (
+        {/* TODO: Simple list that you only edit items if you click edit button */
+          (stocks || []).map((stock, index) => (
           <div key={index}>
-            <TextField defaultValue={stock}/>
+            <TextField defaultValue={stock.symbol}/>
           </div>
-        ))*/}
+        ))}
         <IconButton onClick={addStock}>
           <AddCircleOutline/>
         </IconButton>

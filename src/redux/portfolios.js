@@ -31,13 +31,15 @@ export default function (state = initialState, action) {
   }
 
   const { id } = action;
-  return {
-    ...state,
-    values: {
-      ...state.values,
-      [id]: portfolio(state.values[id], action)
-    }
-  };
-  
+  if (id !== undefined) {
+    return {
+      ...state,
+      values: {
+        ...state.values,
+        [id]: portfolio(state.values[id], action)
+      }
+    };
+  }
+
   return state;
 }

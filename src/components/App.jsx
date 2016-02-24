@@ -16,7 +16,7 @@ const Index = () => (
     <div>BaseApp</div>
     <div><Link to="/chart1">Chart1</Link></div>
     <div><Link to="/chart2">Chart2</Link></div>
-    <div><Link to="/portfolio">Portfolio</Link></div>
+    <div><Link to="/portfolios">Portfolios</Link></div>
     <div><Link to="/portfolioChart">PortfolioChart</Link></div>
   </div>
 );
@@ -27,7 +27,7 @@ const App = () => (
       <IndexRoute component={Index}/>
       <Route path="chart1" component={Chart1}/>
       <Route path="chart2" component={Chart2}/>
-      <Route path="portfolio" component={PortfolioSet}/>
+      <Route path="portfolios" component={PortfolioSet}/>
       <Route path="portfolioChart" component={PortfolioChart}/>
     </Route>
   </Router>
