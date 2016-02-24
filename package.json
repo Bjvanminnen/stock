@@ -10,9 +10,12 @@
     "babel-loader": "^5.1.2",
     "babel-plugin-import-asserts": "^1.0.2",
     "babel-plugin-react-transform": "^1.1.1",
+    "chai": "^3.5.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "glob": "^7.0.0",
     "history": "^1.17.0",
     "material-ui": "^0.14.4",
+    "mocha": "^2.4.5",
     "react-addons-css-transition-group": "^0.14.7",
     "react-google-charts": "^0.2.0",
     "react-redux": "^4.0.6",
@@ -32,7 +35,9 @@
   "scripts": {
     "dev": "PORT=3001 node devServer",
     "server": "node server/babel.main.js",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "test": "mocha --require babel-core/register",
+    "testwatch": "mocha --require babel-core/register --watch"
   },
   "author": "",
   "license": "ISC",
